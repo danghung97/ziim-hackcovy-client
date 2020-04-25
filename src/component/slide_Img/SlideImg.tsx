@@ -26,7 +26,7 @@ function SlideImg() {
 	return (
 		<Col style={{ height: "max-content" }}>
 			<div style={{ position: "relative", width: "100%" }}>
-				<Carousel autoplay autoplaySpeed={1500}>
+				<Carousel autoplay autoplaySpeed={3000}>
 					{imgsList.map(({ url }) => (
 						<div>
 							<img src={url} alt="" height="500px" width="100%" />

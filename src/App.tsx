@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import Home from './components/Home';
 import CreatePage from './components/createPage';
-import FooterZiim from "./component/footer";
 import "antd/dist/antd.css";
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
           <CreatePage />
         </Route>
       </Switch>
-      <FooterZiim/>
     </div>
   </Router>
   );

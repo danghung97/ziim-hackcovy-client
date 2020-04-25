@@ -8,3 +8,24 @@
 .register:hover {
 	cursor: pointer;
 }
+
+.float{
+	z-index: 1000;
+	position:fixed;
+	width: 280px;
+	height: 43px;
+	bottom: 80px;
+	right:0;
+	background-color: #E9BE31;
+	color: #FFF;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	letter-spacing: 2px;
+	padding-top: 5px;
+	border-width: 0px;
+}

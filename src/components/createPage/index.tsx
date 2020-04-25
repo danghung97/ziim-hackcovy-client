@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import SlideImg from "../../component/slide_Img/SlideImg";
-import { Col, Row, Space } from "antd";
+import { Col, Row, Space, Modal, Form, Input, Radio } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import EditableTable from "../../component/editableTable/editTable";
@@ -48,6 +48,7 @@ const initial = {
 
 function CreatePage() {
 	const [userState, setuserState] = useState(initial);
+	const [showSave, setShowSave] = useState(true)
 	const {
 		name,
 		description,
@@ -58,18 +59,21 @@ function CreatePage() {
 		scheduleTable,
 	} = userState;
 
-	const onAddNewRowSchedule = (newItem) => {
+	const onAddNewRowSchedule = useCallback((newItem) => {
+		setShowSave(true)
 		setuserState({ ...userState, scheduleTable: [...scheduleTable, newItem] });
-	};
+	}, [scheduleTable, userState]);
 
-	const onDeleteRowSchedule = (key) => {
-		setuserState({
-			...userState,
-			scheduleTable: [...scheduleTable.filter((item) => item.key !== key)],
-		});
-	};
-
-	const onSaveRowSchedule = (row) => {
+	const onDeleteRowSchedule = useCallback((key) => {
+		setShowSave(true)
+			setuserState({
+				...userState,
+				scheduleTable: [...scheduleTable.filter((item) => item.key !== key)],
+			});
+		},[scheduleTable, userState]
+	)
+	const onSaveRowSchedule = useCallback((row) => {
+		setShowSave(true)
 		const newData = [...scheduleTable];
 		const index = newData.findIndex((item) => row.key === item.key);
 		const item = newData[index];
@@ -78,27 +82,32 @@ function CreatePage() {
 			...userState,
 			scheduleTable: newData,
 		});
-	};
+	},[scheduleTable, userState]);
 
-	const onChangeText = (item) => {
+	const onChangeText = useCallback( (item) => {
+		setShowSave(true)
 		const i = defaultTopic.findIndex((_item) => _item.key === item.key);
 		if (i > -1) defaultTopic[i] = item;
 		setuserState({ ...userState, defaultTopic });
-	};
+	}, [defaultTopic, userState]);
 
-	const onClickMore = () => {
+	const onClickMore = useCallback(() => {
+		setShowSave(true)
 		defaultTopic.push({
 			key: defaultTopic.length + 1,
 			title: "New topic",
 			desc: "Decription topic",
 		});
 		setuserState({ ...userState, defaultTopic });
-	};
+	}, [defaultTopic, userState]);
 
 	const onClickRegister = () => {};
-
+	const saveAllChanges = useCallback(() => {}, [])
 	return (
 		<Col span={24}>
+			{showSave && <button onClick={saveAllChanges} type="button" className="float" >
+				SAVE CHANGES	
+			</button>}
 			<SlideImg />
 			<Space size={50} direction="vertical">
 				<Row>

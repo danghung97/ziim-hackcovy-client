@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Card, Typography, List, Col, Row, Divider } from "antd";
-import { CaretRightOutlined, FacebookFilled } from "@ant-design/icons";
+import { CaretRightOutlined } from "@ant-design/icons";
 import "./footer.css";
 
 const { Title, Paragraph, Text } = Typography;

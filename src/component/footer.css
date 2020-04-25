@@ -14,9 +14,10 @@
 	background: #fafafa;
 	box-shadow: 50px 130px 100px rgba(0, 0, 0, 0.145947);
 	padding-left: 100px;
-	position: absolute;
+	position: relative;
 	padding-top: 3%;
 	padding-bottom: 3%;
+	bottom: -100px;
 }
 
 .letGetStart {
@@ -29,13 +30,12 @@
 }
 
 .boxBot {
-	z-index: 0;
 	width: 100%;
-	top: 65px;
 	padding-top: 16%;
 	background-color: #4f553d;
-	position: relative;
 	padding-bottom: 30px;
+	position: relative;
+	overflow: hidden;
 }
 
 .boxBotContent {

@@ -1,0 +1,47 @@
+.desc {
+	margin-top: 10px;
+}
+
+.textDes {
+	text-decoration-line: underline;
+	font-size: 16px;
+	color: #d4d6d4;
+}
+
+.boxTop {
+	z-index: 10;
+	width: 70%;
+	background: #fafafa;
+	box-shadow: 50px 130px 100px rgba(0, 0, 0, 0.145947);
+	padding-left: 100px;
+	position: absolute;
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+
+.letGetStart {
+	color: #d4d6d4;
+}
+
+.letGetStart:hover {
+	color: #4f553d;
+	cursor: pointer;
+}
+
+.boxBot {
+	z-index: 0;
+	width: 100%;
+	top: 65px;
+	padding-top: 16%;
+	background-color: #4f553d;
+	position: relative;
+	padding-bottom: 30px;
+}
+
+.boxBotContent {
+	margin-left: 50px;
+}
+
+.boxBotTitleText {
+	color: #b6c197;
+}

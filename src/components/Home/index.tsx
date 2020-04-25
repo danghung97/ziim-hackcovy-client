@@ -61,9 +61,9 @@ function Home() {
 					</div>
 				</div>
 			</div>
-			<div className="create-page" style={{ top: heightScreen - 56 }}>
+			<a href="/create_page" className="create-page" style={{ top: heightScreen - 56 }}>
 				<span className="create-text">CREATE PAGE</span>
-			</div>
+			</a>
 			<List
 				grid={{ column: 1 }}
 				dataSource={listItem}

@@ -12,15 +12,11 @@ function App() {
 				{/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
 				<Switch>
-					<Route path="/">
-						<Home />
-					</Route>
-					<Route path="/create_page">
-						<CreatePage />
-					</Route>
+					<Route exact path="/" component={Home} />
+					<Route path="/create_page" component={CreatePage} />
 				</Switch>
-				<FooterZiim />
 			</div>
+			<FooterZiim />
 		</Router>
 	);
 }

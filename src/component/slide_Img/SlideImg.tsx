@@ -8,21 +8,27 @@ const imgsList = [
 		url:
 			"https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/2fe99022d4c36efce0c05d0b08dac133/girl-writing-on-a-black-keyboard-6469.jpg",
 	},
-	{
-		url:
-			"https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/a38272ea8f3950094bc80b2d045c15ac/white-rose-1713953.jpg",
-	},
-	{
-		url:
-			"https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/c5d1a950fa5c5f90c60838d3b5d1d0d6/woman-in-gray-leggings-and-black-tank-top-lying-on-yoga-mat-3823043.jpg",
-	},
-	{
-		url:
-			"https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/5fbec6fd253797e9d9feb611778126f8/bake-bakery-baking-bread-357627.jpg",
-	},
+	// {
+	// 	url:
+	// 		"https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/a38272ea8f3950094bc80b2d045c15ac/white-rose-1713953.jpg",
+	// },
+	// {
+	// 	url:
+	// 		"https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/c5d1a950fa5c5f90c60838d3b5d1d0d6/woman-in-gray-leggings-and-black-tank-top-lying-on-yoga-mat-3823043.jpg",
+	// },
+	// {
+	// 	url:
+	// 		"https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/5fbec6fd253797e9d9feb611778126f8/bake-bakery-baking-bread-357627.jpg",
+	// },
 ];
 
-function SlideImg() {
+interface SlideImgProps {
+	handleHoverImage: () => void
+	handleUnhoverImage: () => void
+}
+
+function SlideImg(props: SlideImgProps) {
+	const {handleHoverImage, handleUnhoverImage} = props
 	return (
 		<Col style={{ height: "max-content" }}>
 			<div style={{ position: "relative", width: "100%" }}>
@@ -33,7 +39,7 @@ function SlideImg() {
 						</div>
 					))}
 				</Carousel> */}
-				<img src={imgsList[3].url} alt="" width="100%" />
+				<img onMouseEnter={handleHoverImage} onMouseLeave={handleUnhoverImage} src={imgsList[3].url} alt="" width="100%" />
 			</div>
 			<Col
 				style={{

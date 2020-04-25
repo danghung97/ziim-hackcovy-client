@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from "react";
 import SlideImg from "../../component/slide_Img/SlideImg";
-import { Col, Row, Space, Divider } from "antd";
+import { Col, Row, Space, Divider, Button } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import EditableTable from "../../component/editableTable/editTable";
 import ItemTopic from "./itemTopic";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import "./index.css";
+import Background from '../../assets/image/Slider02.png'
 
 const initial = {
 	name: "Jane Luna",
@@ -46,9 +47,23 @@ const initial = {
 	],
 };
 
+const register = {
+	position: 'absolute',
+	top: '-50px',
+	right: 0,
+	flex: 1,
+}
+
 function CreatePage() {
 	const [userState, setuserState] = useState(initial);
-	const [showSave, setShowSave] = useState(true)
+	const [showSave, setShowSave] = useState(false)
+	const [showChangeImage, setShowChangeImage] = useState(false)
+	const handleHoverImage = useCallback(() => {
+		setShowChangeImage(true)
+	}, [])
+	const handleUnhoverImage = useCallback(() => {
+		setShowChangeImage(false)
+	}, [])
 	const {
 		name,
 		description,
@@ -103,12 +118,29 @@ function CreatePage() {
 
 	const onClickRegister = () => {};
 	const saveAllChanges = useCallback(() => {}, [])
+	console.log(showChangeImage)
 	return (
 		<Col span={24}>
 			{showSave && <button onClick={saveAllChanges} type="button" className="float" >
 				SAVE CHANGES	
 			</button>}
-			<SlideImg />
+			<img onMouseEnter={handleHoverImage} onMouseLeave={handleUnhoverImage} 
+			src="https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/5fbec6fd253797e9d9feb611778126f8/bake-bakery-baking-bread-357627.jpg"
+			alt="" width="100%" />
+			<Row align="bottom" justify="end" style={{ flex: 1 }}>
+				<Col className="register" onClick={onClickRegister} style={{position: 'absolute', marginTop: '20px' }}>
+					REGISTER
+				</Col>
+			</Row>
+			{showChangeImage &&	<Row align="bottom" justify="start" style={{ flex: 1 }}>
+				<Col onMouseEnter={handleHoverImage} className="change-image" onClick={() => {alert('2')}} 
+							style={{position: 'absolute', left: '15px' }}>
+					edit image
+				</Col>
+			</Row>}
+			{/* <div style={{backgroundImage: `url(${Background})` }}>
+
+			</div> */}
 			<Space size={50} direction="vertical">
 				<Row>
 					<Col span="12">
@@ -117,7 +149,15 @@ function CreatePage() {
 							src="https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/9656e2e51abda6070a02552bf421a3ed/woman-holding-disposable-cup-712513.jpg"
 							width="100%"
 							height="100%"
+							onMouseEnter={handleHoverImage}
+							onMouseLeave={handleUnhoverImage} 
 						/>
+						{showChangeImage &&	<Row align="bottom" justify="end" style={{ flex: 1 }}>
+							<Col onMouseEnter={handleHoverImage} className="change-image" onClick={() => {alert('2')}} 
+										style={{position: 'absolute', right: '15px', bottom: '15px' }}>
+								edit image
+							</Col>
+						</Row>}
 					</Col>
 					<Col span="12">
 						<div
@@ -150,12 +190,6 @@ function CreatePage() {
 										{description}
 									</Text>
 								</Col>
-							</Row>
-							<Row align="bottom" justify="end" style={{ flex: 1 }}>
-								<Col span={5} className="register" onClick={onClickRegister}>
-									REGISTER
-								</Col>
-								<Col span={3} />
 							</Row>
 						</div>
 					</Col>

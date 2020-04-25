@@ -42,7 +42,6 @@ function Home() {
 		window.addEventListener("resize", updateSize);
 		return () => window.removeEventListener("resize", updateSize);
 	}, []);
-	console.log(widthScreen, heightScreen);
 	return (
 		<div className="container" style={{ width: widthScreen }}>
 			<div className="introduce" style={{ height: heightScreen, width: widthScreen }}>

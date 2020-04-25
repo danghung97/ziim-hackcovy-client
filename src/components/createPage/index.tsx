@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import SlideImg from "../../component/slide_Img/SlideImg";
-import { Col, Row, Space, Divider } from "antd";
+import { Col, Row, Space, Divider, Button } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import EditableTable from "../../component/editableTable/editTable";
 import ItemTopic from "./itemTopic";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import "./index.css";
+import Background from '../../assets/image/Slider02.png'
 
 const initial = {
 	name: "Jane Luna",
@@ -46,8 +47,23 @@ const initial = {
 	],
 };
 
+const register = {
+	position: 'absolute',
+	top: '-50px',
+	right: 0,
+	flex: 1,
+}
+
 function CreatePage() {
 	const [userState, setuserState] = useState(initial);
+	const [showSave, setShowSave] = useState(false)
+	const [showChangeImage, setShowChangeImage] = useState(false)
+	const handleHoverImage = useCallback(() => {
+		setShowChangeImage(true)
+	}, [])
+	const handleUnhoverImage = useCallback(() => {
+		setShowChangeImage(false)
+	}, [])
 	const {
 		name,
 		description,
@@ -58,18 +74,21 @@ function CreatePage() {
 		scheduleTable,
 	} = userState;
 
-	const onAddNewRowSchedule = (newItem) => {
+	const onAddNewRowSchedule = useCallback((newItem) => {
+		setShowSave(true)
 		setuserState({ ...userState, scheduleTable: [...scheduleTable, newItem] });
-	};
+	}, [scheduleTable, userState]);
 
-	const onDeleteRowSchedule = (key) => {
-		setuserState({
-			...userState,
-			scheduleTable: [...scheduleTable.filter((item) => item.key !== key)],
-		});
-	};
-
-	const onSaveRowSchedule = (row) => {
+	const onDeleteRowSchedule = useCallback((key) => {
+		setShowSave(true)
+			setuserState({
+				...userState,
+				scheduleTable: [...scheduleTable.filter((item) => item.key !== key)],
+			});
+		},[scheduleTable, userState]
+	)
+	const onSaveRowSchedule = useCallback((row) => {
+		setShowSave(true)
 		const newData = [...scheduleTable];
 		const index = newData.findIndex((item) => row.key === item.key);
 		const item = newData[index];
@@ -78,28 +97,50 @@ function CreatePage() {
 			...userState,
 			scheduleTable: newData,
 		});
-	};
+	},[scheduleTable, userState]);
 
-	const onChangeText = (item) => {
+	const onChangeText = useCallback( (item) => {
+		setShowSave(true)
 		const i = defaultTopic.findIndex((_item) => _item.key === item.key);
 		if (i > -1) defaultTopic[i] = item;
 		setuserState({ ...userState, defaultTopic });
-	};
+	}, [defaultTopic, userState]);
 
-	const onClickMore = () => {
+	const onClickMore = useCallback(() => {
+		setShowSave(true)
 		defaultTopic.push({
 			key: defaultTopic.length + 1,
 			title: "New topic",
 			desc: "Decription topic",
 		});
 		setuserState({ ...userState, defaultTopic });
-	};
+	}, [defaultTopic, userState]);
 
 	const onClickRegister = () => {};
-
+	const saveAllChanges = useCallback(() => {}, [])
+	console.log(showChangeImage)
 	return (
 		<Col span={24}>
-			<SlideImg />
+			{showSave && <button onClick={saveAllChanges} type="button" className="float" >
+				SAVE CHANGES	
+			</button>}
+			<img onMouseEnter={handleHoverImage} onMouseLeave={handleUnhoverImage} 
+			src="https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/5fbec6fd253797e9d9feb611778126f8/bake-bakery-baking-bread-357627.jpg"
+			alt="" width="100%" />
+			<Row align="bottom" justify="end" style={{ flex: 1 }}>
+				<Col className="register" onClick={onClickRegister} style={{position: 'absolute', marginTop: '20px' }}>
+					REGISTER
+				</Col>
+			</Row>
+			{showChangeImage &&	<Row align="bottom" justify="start" style={{ flex: 1 }}>
+				<Col onMouseEnter={handleHoverImage} className="change-image" onClick={() => {alert('2')}} 
+							style={{position: 'absolute', left: '15px' }}>
+					edit image
+				</Col>
+			</Row>}
+			{/* <div style={{backgroundImage: `url(${Background})` }}>
+
+			</div> */}
 			<Space size={50} direction="vertical">
 				<Row>
 					<Col span="12">
@@ -108,7 +149,15 @@ function CreatePage() {
 							src="https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/9656e2e51abda6070a02552bf421a3ed/woman-holding-disposable-cup-712513.jpg"
 							width="100%"
 							height="100%"
+							onMouseEnter={handleHoverImage}
+							onMouseLeave={handleUnhoverImage} 
 						/>
+						{showChangeImage &&	<Row align="bottom" justify="end" style={{ flex: 1 }}>
+							<Col onMouseEnter={handleHoverImage} className="change-image" onClick={() => {alert('2')}} 
+										style={{position: 'absolute', right: '15px', bottom: '15px' }}>
+								edit image
+							</Col>
+						</Row>}
 					</Col>
 					<Col span="12">
 						<div
@@ -141,12 +190,6 @@ function CreatePage() {
 										{description}
 									</Text>
 								</Col>
-							</Row>
-							<Row align="bottom" justify="end" style={{ flex: 1 }}>
-								<Col span={5} className="register" onClick={onClickRegister}>
-									REGISTER
-								</Col>
-								<Col span={3} />
 							</Row>
 						</div>
 					</Col>

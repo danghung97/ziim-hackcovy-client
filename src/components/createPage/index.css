@@ -1,0 +1,10 @@
+.register {
+	background-color: #e9be31;
+	padding: 16px;
+	text-align: end;
+	color: #ffffff;
+}
+
+.register:hover {
+	cursor: pointer;
+}

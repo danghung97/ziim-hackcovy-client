@@ -6,6 +6,7 @@ import Text from "antd/lib/typography/Text";
 import EditableTable from "../../component/editableTable/editTable";
 import ItemTopic from "./itemTopic";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import "./index.css";
 
 const initial = {
 	name: "Jane Luna",
@@ -58,8 +59,7 @@ function CreatePage() {
 	} = userState;
 
 	const onAddNewRowSchedule = (newItem) => {
-		scheduleTable.push(newItem);
-		setuserState({ ...userState, scheduleTable: [...scheduleTable] });
+		setuserState({ ...userState, scheduleTable: [...scheduleTable, newItem] });
 	};
 
 	const onDeleteRowSchedule = (key) => {
@@ -95,6 +95,8 @@ function CreatePage() {
 		setuserState({ ...userState, defaultTopic });
 	};
 
+	const onClickRegister = () => {};
+
 	return (
 		<Col span={24}>
 			<SlideImg />
@@ -108,28 +110,45 @@ function CreatePage() {
 							height="100%"
 						/>
 					</Col>
-					<Col span="12" style={{ display: "flex", justifyContent: "center" }}>
-						<Col span="20" style={{ alignSelf: "center", height: "min-content" }}>
-							<Title
-								style={{ color: "#4D533C" }}
-								editable={{
-									onChange: (str) => {
-										setuserState({ ...userState, name: str });
-									},
-								}}
-							>
-								{name}
-							</Title>
-							<Text
-								editable={{
-									onChange: (str) => {
-										setuserState({ ...userState, description: str });
-									},
-								}}
-							>
-								{description}
-							</Text>
-						</Col>
+					<Col span="12">
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								width: "100%",
+								height: "100%",
+							}}
+						>
+							<Row align="bottom" justify="center" style={{ flex: 2 }}>
+								<Col span="20">
+									<Title
+										style={{ color: "#4D533C" }}
+										editable={{
+											onChange: (str) => {
+												setuserState({ ...userState, name: str });
+											},
+										}}
+									>
+										{name}
+									</Title>
+									<Text
+										editable={{
+											onChange: (str) => {
+												setuserState({ ...userState, description: str });
+											},
+										}}
+									>
+										{description}
+									</Text>
+								</Col>
+							</Row>
+							<Row align="bottom" justify="end" style={{ flex: 1 }}>
+								<Col span={5} className="register" onClick={onClickRegister}>
+									REGISTER
+								</Col>
+								<Col span={3} />
+							</Row>
+						</div>
 					</Col>
 				</Row>
 				<Col span={24}>

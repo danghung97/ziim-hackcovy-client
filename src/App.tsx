@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import CreatePage from "./components/createPage";
 import "antd/dist/antd.css";
 import FooterZiim from "./component/footer/footer";
+import PageFinished from "./components/userPage";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/create_page" component={CreatePage} />
+					<Route path="/page/:pageId" component={PageFinished} />
 				</Switch>
 			</div>
 			<FooterZiim />

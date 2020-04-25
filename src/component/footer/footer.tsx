@@ -37,42 +37,41 @@ class FooterZiim extends Component {
 		return (
 			<Footer style={{ backgroundColor: "white", paddingLeft: 0, paddingRight: 0 }}>
 				{/* how work section */}
-				<div
-					style={{
-						paddingLeft: 100,
-						paddingRight: 100,
-					}}
-				>
-					<Title>How Ziim works</Title>
-					<List
-						grid={{ gutter: 24, column: 4 }}
-						dataSource={ziimWork}
-						renderItem={(item) => (
-							<List.Item>
-								<Card
-									bordered={false}
-									actions={[
-										<div>
-											<CaretRightOutlined />
-											ReadMore
-										</div>,
-									]}
-								>
-									<Card.Meta title={item.title} />
-									<Paragraph
-										className="desc"
-										ellipsis={{
-											rows: 3,
-											expandable: false,
-										}}
+				<Row>
+					<Col span={3} />
+					<Col span={18}>
+						<Title>How Ziim works</Title>
+						<List
+							grid={{ gutter: 24, column: 4 }}
+							dataSource={ziimWork}
+							renderItem={(item) => (
+								<List.Item>
+									<Card
+										bordered={false}
+										actions={[
+											<div>
+												<CaretRightOutlined />
+												ReadMore
+											</div>,
+										]}
 									>
-										{item.des}
-									</Paragraph>
-								</Card>
-							</List.Item>
-						)}
-					/>
-				</div>
+										<Card.Meta title={item.title} />
+										<Paragraph
+											className="desc"
+											ellipsis={{
+												rows: 3,
+												expandable: false,
+											}}
+										>
+											{item.des}
+										</Paragraph>
+									</Card>
+								</List.Item>
+							)}
+						/>
+					</Col>
+					<Col span={3} />
+				</Row>
 				{/* how work section */}
 
 				<div style={{ width: "100%", height: 300 }}>

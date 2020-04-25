@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import SlideImg from "../../component/slide_Img/SlideImg";
-import { Col, Row, Space, Modal, Form, Input, Radio } from "antd";
+import { Col, Row, Space, Divider } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import EditableTable from "../../component/editableTable/editTable";
@@ -160,9 +160,9 @@ function CreatePage() {
 						</div>
 					</Col>
 				</Row>
-				<Col span={24}>
-					<Row>
-						<Col span={3} />
+				<Row>
+					<Col span={3} />
+					<Col span={18}>
 						<Col>
 							<Title
 								editable={{
@@ -183,39 +183,31 @@ function CreatePage() {
 								{scheduleDesc}
 							</Text>
 						</Col>
-					</Row>
-					<Row justify="center" style={{ marginTop: 50 }}>
+
 						<EditableTable
 							onAddNewRowSchedule={onAddNewRowSchedule}
 							onDeleteRowSchedule={onDeleteRowSchedule}
 							onSaveRowSchedule={onSaveRowSchedule}
 							data={scheduleTable}
 						/>
-					</Row>
-				</Col>
-				<Row>
-					<Col span={3} />
-					<Col>
-						<Title style={{ color: "#4D533C" }}>Topics covered in class</Title>
-						<Text>Detailes of information of each topic</Text>
-					</Col>
-				</Row>
-				<img src={topicCoverUrl} alt="" width="100%" />
-				<Row>
-					<Col span={3} />
-					<Col span={18}>
+						<Col>
+							<Title style={{ color: "#4D533C" }}>Topics covered in class</Title>
+							<Text>Detailes of information of each topic</Text>
+						</Col>
+						<img src={topicCoverUrl} alt="" width="100%" />
 						<Space direction="vertical" size="large">
 							{defaultTopic.map((item) => (
 								<ItemTopic item={item} onChange={onChangeText} />
 							))}
 						</Space>
+						<Row justify="end">
+							<a onClick={onClickMore}>
+								<PlusCircleOutlined style={{ fontSize: 36 }} />
+							</a>
+						</Row>
+						<Divider />
 					</Col>
-				</Row>
-				<Row justify="end">
-					<a onClick={onClickMore}>
-						<PlusCircleOutlined style={{ fontSize: 36 }} />
-					</a>
-					<Col span={4} />
+					<Col span={3} />
 				</Row>
 			</Space>
 		</Col>

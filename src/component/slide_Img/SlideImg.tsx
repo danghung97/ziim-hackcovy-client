@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Row, Col } from "antd";
+import { Carousel, Col } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 
@@ -26,13 +26,14 @@ function SlideImg() {
 	return (
 		<Col style={{ height: "max-content" }}>
 			<div style={{ position: "relative", width: "100%" }}>
-				<Carousel autoplay autoplaySpeed={3000}>
+				{/* <Carousel autoplay autoplaySpeed={3000}>
 					{imgsList.map(({ url }) => (
 						<div>
 							<img src={url} alt="" height="500px" width="100%" />
 						</div>
 					))}
-				</Carousel>
+				</Carousel> */}
+				<img src={imgsList[3].url} alt="" width="100%" />
 			</div>
 			<Col
 				style={{

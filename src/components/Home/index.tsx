@@ -1,6 +1,34 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import FooterZiim from "../../component/footer";
+import { List } from "antd";
+import LeftImg from "./LeftImg";
+import RightImg from "./RightImg";
+
+const listItem = [
+	{
+		img: require("./img/Slider01.png"),
+		title: "We Have Some \n Awesome Courses.",
+		desc: null,
+	},
+	{
+		img: require("./img/Slider02.jpg"),
+		title: "How to be a better writter",
+		desc:
+			"This article is floated online with an aim to help you find the best dvd printing solution.\nDvd printing is an important feature used by large and small DVD production houses to print information on DVDs.",
+	},
+	{
+		img: require("./img/Slider03.jpg"),
+		title: "Is this the future of \n3D model?",
+		desc:
+			"While it was just a TV show, that little speech at the beginning of the original Star Trek show really did do a good job of capturing our feelings about space.\nIt is those feelings that drive our love of astronomy and our desire to learn more and more about it. ",
+	},
+	{
+		img: require("./img/Slider04.jpg"),
+		title: "Cook with Love",
+		desc:
+			"You should be able to find several indispensable facts about motivation in the following paragraphs. \n If there’s at least one fact you didn’t know before, imagine the difference it might make.",
+	},
+];
 
 function Home() {
 	const [widthScreen, setWidthScreen] = useState(window.innerWidth);
@@ -36,17 +64,17 @@ function Home() {
 			<div className="create-page" style={{ top: heightScreen - 56 }}>
 				<span className="create-text">CREATE PAGE</span>
 			</div>
-			<div className="slider01">
-				<div
-					className="slider-image"
-					style={{ width: widthScreen / 2 + 15, height: "510px" }}
-				></div>
-				<div className="slider-text" style={{ maxWidth: widthScreen / 2 - 15 }}>
-					<span style={{ marginLeft: "60px", display: "inline-block" }}>
-						We Have Some Awesome Courses
-					</span>
-				</div>
-			</div>
+			<List
+				grid={{ column: 1 }}
+				dataSource={listItem}
+				renderItem={(item, index) => {
+					return (
+						<List.Item>
+							{index % 2 === 0 ? <LeftImg img={item} /> : <RightImg img={item} />}
+						</List.Item>
+					);
+				}}
+			/>
 		</div>
 	);
 }

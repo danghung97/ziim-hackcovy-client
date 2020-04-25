@@ -1,16 +1,9 @@
 import React from "react";
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	useRouteMatch,
-	useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CreatePage from "./components/createPage";
 import "antd/dist/antd.css";
-import FooterZiim from "./component/footer";
+import FooterZiim from "./component/footer/footer";
 
 function App() {
 	return (

@@ -144,7 +144,7 @@ class FooterZiim extends Component {
 								</Row>
 							</Col>
 							<Divider />
-							<img src={require("./../assets/image/ziimLogo.png")} alt="" />
+							<img src={require("./../../assets/image/ziimLogo.png")} alt="" />
 						</div>
 					</div>
 				</div>

@@ -7,6 +7,7 @@ import EditableTable from "../../component/editableTable/editTable";
 import ItemTopic from "./itemTopic";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import "./index.css";
+import ModalRegister from '../../component/modalRegister/ModalRegister'
 
 const initial = {
 	name: "Jane Luna",
@@ -123,146 +124,170 @@ function CreatePage() {
 	}, [])
 
 	const [file, setFile] = useState('')
-	const onChanged = useCallback((e) => {
-		setFile(e.target.files[0])
+	const onChange = useCallback((e) => {
+		setShowSave(true)
+		setFile(URL.createObjectURL(e.target.files[0]))
+	}, [])
+
+	const [file2, setFile2] = useState('')
+	const onChange2 = useCallback((e) => {
+		setShowSave(true)
+		setFile2(URL.createObjectURL(e.target.files[0]))
+	}, [])
+
+	const [file3, setFile3] = useState('')
+	const onChange3 = useCallback((e) => {
+		setShowSave(true)
+		setFile3(URL.createObjectURL(e.target.files[0]))
+	}, [])
+
+	const [showModal, setShowModal] = useState(false)
+	const handleShowModal = useCallback(() => {
+		setShowModal(true)
+	}, [])
+	const handleHideModal = useCallback(() => {
+		setShowModal(false)
 	}, [])
 	return (
-		<Col span={24}>
-			{showSave && <button onClick={saveAllChanges} type="button" className="float" >
-				SAVE CHANGES	
-			</button>}
-			<img onMouseEnter={handleHoverImage} onMouseLeave={handleUnhoverImage} onLoad={onImgLoad}
-			src="https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/5fbec6fd253797e9d9feb611778126f8/bake-bakery-baking-bread-357627.jpg"
-			alt="" width="100%" />
-			<Row align="bottom" justify="end" style={{ flex: 1 }}>
-				<Col className="register" onClick={onClickRegister} style={{position: 'absolute', marginTop: '20px' }}>
-					$19.99 REGISTER
-				</Col>
-			</Row>
-			{showChangeImage &&	
-					<div onMouseEnter={handleHoverImage} className="fileinputs" style={{position: 'absolute', left: '30px', top: heigtImage - 50}}>
-						<input type="file" className="file" />
-						<div className="fakefile">
-							<input />
-						</div>
-					</div>
-				}
-
-			<Space size={50} direction="vertical">
-				<Row>
-					<Col span="12">
-						<img
-							alt=""
-							src="https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/9656e2e51abda6070a02552bf421a3ed/woman-holding-disposable-cup-712513.jpg"
-							width="100%"
-							height="100%"
-							onMouseEnter={handleHoverImage}
-							onMouseLeave={handleUnhoverImage} 
-						/>
-						{showChangeImage &&	
-							<div onMouseEnter={handleHoverImage} className="fileinputs" style={{position: 'absolute', right: '5px', bottom: '15px'}}>
-								<input type="file" className="file" />
-								<div className="fakefile">
-									<input />
-								</div>
-							</div>
-						}
+		<>
+			<Col span={24}>
+				{showSave && <button onClick={saveAllChanges} type="button" className="float" >
+					SAVE CHANGES	
+				</button>}
+				<img onMouseEnter={handleHoverImage} onMouseLeave={handleUnhoverImage} onLoad={onImgLoad}
+				src={file || "https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/5fbec6fd253797e9d9feb611778126f8/bake-bakery-baking-bread-357627.jpg"}
+				alt="" width="100%" />
+				<Row align="bottom" justify="end" style={{ flex: 1 }}>
+					<Col className="register" onClick={handleShowModal} style={{position: 'absolute', marginTop: '20px' }}>
+						$19.99 REGISTER
 					</Col>
-					<Col span="12">
-						<div
-							style={{
-								display: "flex",
-								flexDirection: "column",
-								width: "100%",
-								height: "100%",
-							}}
-						>
-							<Row align="bottom" justify="center" style={{ flex: 2 }}>
-								<Col span="20">
-									<Title
-										style={{ color: "#4D533C" }}
-										editable={{
-											onChange: (str) => {
-												setuserState({ ...userState, name: str });
-											},
-										}}
-									>
-										{name}
-									</Title>
-									<Text
-										editable={{
-											onChange: (str) => {
-												setuserState({ ...userState, description: str });
-											},
-										}}
-									>
-										{description}
-									</Text>
-								</Col>
+				</Row>
+				{showChangeImage &&	
+						<div onMouseEnter={handleHoverImage} className="fileinputs" style={{position: 'absolute', left: '30px', top: heigtImage - 50}}>
+							<input type="file" className="file" onChange={onChange} />
+							<div className="fakefile">
+								<input />
+							</div>
+						</div>
+					}
+
+				<Space size={50} direction="vertical">
+					<Row>
+						<Col span="12">
+							<img
+								alt=""
+								src={file2 || "https://trello-attachments.s3.amazonaws.com/5cb6f958ca067478618ae413/5ea2ee7acf0e431048e4e4f2/9656e2e51abda6070a02552bf421a3ed/woman-holding-disposable-cup-712513.jpg"}
+								width="100%"
+								height="100%"
+								onMouseEnter={handleHoverImage}
+								onMouseLeave={handleUnhoverImage} 
+							/>
+							{showChangeImage &&	
+								<div onMouseEnter={handleHoverImage} className="fileinputs" style={{position: 'absolute', right: '5px', bottom: '15px'}}>
+									<input type="file" className="file" onChange={onChange2} />
+									<div className="fakefile">
+										<input />
+									</div>
+								</div>
+							}
+						</Col>
+						<Col span="12">
+							<div
+								style={{
+									display: "flex",
+									flexDirection: "column",
+									width: "100%",
+									height: "100%",
+								}}
+							>
+								<Row align="bottom" justify="center" style={{ flex: 2 }}>
+									<Col span="20">
+										<Title
+											style={{ color: "#4D533C" }}
+											editable={{
+												onChange: (str) => {
+													setuserState({ ...userState, name: str });
+												},
+											}}
+										>
+											{name}
+										</Title>
+										<Text
+											editable={{
+												onChange: (str) => {
+													setuserState({ ...userState, description: str });
+												},
+											}}
+										>
+											{description}
+										</Text>
+									</Col>
+								</Row>
+							</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col span={3} />
+						<Col span={18}>
+							<Col>
+								<Title
+									editable={{
+										onChange: (nameSchedule) => {
+											setuserState({ ...userState, nameSchedule });
+										},
+									}}
+								>
+									{nameSchedule}
+								</Title>
+								<Text
+									editable={{
+										onChange: (scheduleDesc) => {
+											setuserState({ ...userState, scheduleDesc });
+										},
+									}}
+								>
+									{scheduleDesc}
+								</Text>
+							</Col>
+
+							<EditableTable
+								onAddNewRowSchedule={onAddNewRowSchedule}
+								onDeleteRowSchedule={onDeleteRowSchedule}
+								onSaveRowSchedule={onSaveRowSchedule}
+								data={scheduleTable}
+							/>
+							<Col>
+								<Title style={{ color: "#4D533C" }}>Topics covered in class</Title>
+								<Text>Detailes of information of each topic</Text>
+							</Col>
+							<img src={file3 || topicCoverUrl} 	onMouseEnter={handleHoverImage}
+								onMouseLeave={handleUnhoverImage}  alt="" width="100%" />
+							{showChangeImage &&	
+								<div onMouseEnter={handleHoverImage} className="fileinputs" style={{position: 'absolute', right: '0px', top: '1100px'}}>
+									<input type="file" className="file" onChange={onChange3} />
+									<div className="fakefile">
+										<input />
+									</div>
+								</div>
+							}
+							<Space direction="vertical" size="large">
+								{defaultTopic.map((item) => (
+									<ItemTopic item={item} onChange={onChangeText} />
+								))}
+							</Space>
+							<Row justify="end">
+								<a onClick={onClickMore}>
+									<PlusCircleOutlined style={{ fontSize: 36 }} />
+								</a>
 							</Row>
-						</div>
-					</Col>
-				</Row>
-				<Row>
-					<Col span={3} />
-					<Col span={18}>
-						<Col>
-							<Title
-								editable={{
-									onChange: (nameSchedule) => {
-										setuserState({ ...userState, nameSchedule });
-									},
-								}}
-							>
-								{nameSchedule}
-							</Title>
-							<Text
-								editable={{
-									onChange: (scheduleDesc) => {
-										setuserState({ ...userState, scheduleDesc });
-									},
-								}}
-							>
-								{scheduleDesc}
-							</Text>
+							<Divider />
 						</Col>
-
-						<EditableTable
-							onAddNewRowSchedule={onAddNewRowSchedule}
-							onDeleteRowSchedule={onDeleteRowSchedule}
-							onSaveRowSchedule={onSaveRowSchedule}
-							data={scheduleTable}
-						/>
-						<Col>
-							<Title style={{ color: "#4D533C" }}>Topics covered in class</Title>
-							<Text>Detailes of information of each topic</Text>
-						</Col>
-						<img src={topicCoverUrl} 	onMouseEnter={handleHoverImage}
-							onMouseLeave={handleUnhoverImage}  alt="" width="100%" />
-						{showChangeImage &&	
-							<div onMouseEnter={handleHoverImage} className="fileinputs" style={{position: 'absolute', right: '0px', top: '1100px'}}>
-								<input type="file" className="file" />
-								<div className="fakefile">
-									<input />
-								</div>
-							</div>
-						}
-						<Space direction="vertical" size="large">
-							{defaultTopic.map((item) => (
-								<ItemTopic item={item} onChange={onChangeText} />
-							))}
-						</Space>
-						<Row justify="end">
-							<a onClick={onClickMore}>
-								<PlusCircleOutlined style={{ fontSize: 36 }} />
-							</a>
-						</Row>
-						<Divider />
-					</Col>
-					<Col span={3} />
-				</Row>
-			</Space>
-		</Col>
+						<Col span={3} />
+					</Row>
+				</Space>
+			</Col>
+			<ModalRegister isvisible={showModal} onClose={handleHideModal} />
+		</>
 	);
 }
 

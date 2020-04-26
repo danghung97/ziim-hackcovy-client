@@ -170,6 +170,7 @@ function CreatePage() {
 							<input type="file" className="file" onChange={onChange} />
 							<div className="fakefile">
 								<input />
+								<p style={{position: 'relative', left: '45px', top: '-25px'}}>edit image</p>
 							</div>
 						</div>
 					}
@@ -190,6 +191,7 @@ function CreatePage() {
 									<input type="file" className="file" onChange={onChange2} />
 									<div className="fakefile">
 										<input />
+										<p style={{position: 'relative', left: '45px', top: '-25px'}}>edit image</p>
 									</div>
 								</div>
 							}
@@ -269,6 +271,7 @@ function CreatePage() {
 									<input type="file" className="file" onChange={onChange3} />
 									<div className="fakefile">
 										<input />
+										<p style={{position: 'relative', left: '45px', top: '-25px'}}>edit image</p>
 									</div>
 								</div>
 							}

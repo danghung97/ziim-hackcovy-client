@@ -136,7 +136,7 @@ function CreatePage() {
 			alt="" width="100%" />
 			<Row align="bottom" justify="end" style={{ flex: 1 }}>
 				<Col className="register" onClick={onClickRegister} style={{position: 'absolute', marginTop: '20px' }}>
-					REGISTER
+					$19.99 REGISTER
 				</Col>
 			</Row>
 			{showChangeImage &&	

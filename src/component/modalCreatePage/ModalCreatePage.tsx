@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Row, Col, Form, Input, Button } from "antd";
+import Title from "antd/lib/typography/Title";
 
 const validateMessages = {
 	required: "${label} is required!",
@@ -31,6 +32,7 @@ function ModalCreatePage({ isVisible, onclose }) {
 		>
 			<Row align="middle" justify="center">
 				<Col span={18}>
+					<Title level={3}>Course information</Title>
 					<Form
 						hideRequiredMark={true}
 						onFinish={onFinish}

@@ -6,6 +6,7 @@ import "antd/dist/antd.css";
 import FooterZiim from "./component/footer/footer";
 import PageFinished from "./components/userPage";
 import ConfirmCode from "./components/confirmCode";
+import AdminRegister from "./components/adminRegister";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Route path="/create_page" component={CreatePage} />
 					<Route path="/page/:pageId" component={PageFinished} />
 					<Route path="/confirm" component={ConfirmCode} />
+					<Route path="/register" component={AdminRegister} />
 				</Switch>
 			</div>
 			<FooterZiim />

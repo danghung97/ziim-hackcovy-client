@@ -1,6 +1,5 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
-import SlideImg from "../../component/slide_Img/SlideImg";
-import { Col, Row, Space, Divider, Button } from "antd";
+import React, { useState, useCallback } from "react";
+import { Col, Row, Space, Divider } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import EditableTable from "../../component/editableTable/editTable";
@@ -47,23 +46,16 @@ const initial = {
 	],
 };
 
-const register = {
-	position: 'absolute',
-	top: '-50px',
-	right: 0,
-	flex: 1,
-}
-
 function CreatePage() {
 	const [userState, setuserState] = useState(initial);
-	const [showSave, setShowSave] = useState(false)
-	const [showChangeImage, setShowChangeImage] = useState(false)
+	const [showSave, setShowSave] = useState(false);
+	const [showChangeImage, setShowChangeImage] = useState(false);
 	const handleHoverImage = useCallback(() => {
-		setShowChangeImage(true)
-	}, [])
+		setShowChangeImage(true);
+	}, []);
 	const handleUnhoverImage = useCallback(() => {
-		setShowChangeImage(false)
-	}, [])
+		setShowChangeImage(false);
+	}, []);
 	const {
 		name,
 		description,
@@ -74,40 +66,51 @@ function CreatePage() {
 		scheduleTable,
 	} = userState;
 
-	const onAddNewRowSchedule = useCallback((newItem) => {
-		setShowSave(true)
-		setuserState({ ...userState, scheduleTable: [...scheduleTable, newItem] });
-	}, [scheduleTable, userState]);
+	const onAddNewRowSchedule = useCallback(
+		(newItem) => {
+			setShowSave(true);
+			setuserState({ ...userState, scheduleTable: [...scheduleTable, newItem] });
+		},
+		[scheduleTable, userState]
+	);
 
-	const onDeleteRowSchedule = useCallback((key) => {
-		setShowSave(true)
+	const onDeleteRowSchedule = useCallback(
+		(key) => {
+			setShowSave(true);
 			setuserState({
 				...userState,
 				scheduleTable: [...scheduleTable.filter((item) => item.key !== key)],
 			});
-		},[scheduleTable, userState]
-	)
-	const onSaveRowSchedule = useCallback((row) => {
-		setShowSave(true)
-		const newData = [...scheduleTable];
-		const index = newData.findIndex((item) => row.key === item.key);
-		const item = newData[index];
-		newData.splice(index, 1, { ...item, ...row });
-		setuserState({
-			...userState,
-			scheduleTable: newData,
-		});
-	},[scheduleTable, userState]);
+		},
+		[scheduleTable, userState]
+	);
+	const onSaveRowSchedule = useCallback(
+		(row) => {
+			setShowSave(true);
+			const newData = [...scheduleTable];
+			const index = newData.findIndex((item) => row.key === item.key);
+			const item = newData[index];
+			newData.splice(index, 1, { ...item, ...row });
+			setuserState({
+				...userState,
+				scheduleTable: newData,
+			});
+		},
+		[scheduleTable, userState]
+	);
 
-	const onChangeText = useCallback( (item) => {
-		setShowSave(true)
-		const i = defaultTopic.findIndex((_item) => _item.key === item.key);
-		if (i > -1) defaultTopic[i] = item;
-		setuserState({ ...userState, defaultTopic });
-	}, [defaultTopic, userState]);
+	const onChangeText = useCallback(
+		(item) => {
+			setShowSave(true);
+			const i = defaultTopic.findIndex((_item) => _item.key === item.key);
+			if (i > -1) defaultTopic[i] = item;
+			setuserState({ ...userState, defaultTopic });
+		},
+		[defaultTopic, userState]
+	);
 
 	const onClickMore = useCallback(() => {
-		setShowSave(true)
+		setShowSave(true);
 		defaultTopic.push({
 			key: defaultTopic.length + 1,
 			title: "New topic",
@@ -117,11 +120,11 @@ function CreatePage() {
 	}, [defaultTopic, userState]);
 
 	const onClickRegister = () => {};
-	const saveAllChanges = useCallback(() => {}, [])
-	const [heigtImage, setHeightImage] = useState()
-	const onImgLoad = useCallback(({target:img}) => {
-		setHeightImage(img.offsetHeight)
-	}, [])
+	const saveAllChanges = useCallback(() => {}, []);
+	const [heigtImage, setHeightImage] = useState();
+	const onImgLoad = useCallback(({ target: img }) => {
+		setHeightImage(img.offsetHeight);
+	}, []);
 
 	const [file, setFile] = useState('')
 	const onChange = useCallback((e) => {
@@ -249,7 +252,6 @@ function CreatePage() {
 									{scheduleDesc}
 								</Text>
 							</Col>
-
 							<EditableTable
 								onAddNewRowSchedule={onAddNewRowSchedule}
 								onDeleteRowSchedule={onDeleteRowSchedule}

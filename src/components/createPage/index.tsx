@@ -1,13 +1,13 @@
 import React, { useState, useCallback } from "react";
-import SlideImg from "../../component/slide_Img/SlideImg";
-import { Col, Row, Space, Divider, Button } from "antd";
+
+import { Col, Row, Space, Divider } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";
 import EditableTable from "../../component/editableTable/editTable";
 import ItemTopic from "./itemTopic";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import "./index.css";
-import Background from '../../assets/image/Slider02.png'
+
 
 const initial = {
 	name: "Jane Luna",
@@ -46,13 +46,6 @@ const initial = {
 		},
 	],
 };
-
-const register = {
-	position: 'absolute',
-	top: '-50px',
-	right: 0,
-	flex: 1,
-}
 
 function CreatePage() {
 	const [userState, setuserState] = useState(initial);

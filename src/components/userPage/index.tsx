@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Component } from "react";
+import React, { useState, useCallback } from "react";
 import { Col, Row, Space, Divider } from "antd";
 import Title from "antd/lib/typography/Title";
 import Text from "antd/lib/typography/Text";

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./style.css";
 import { List } from "antd";
 import LeftImg from "./LeftImg";
 import RightImg from "./RightImg";
+import ModalCreatePage from '../../component/modalCreatePage/ModalCreatePage'
 
 const listItem = [
 	{
@@ -42,7 +43,17 @@ function Home() {
 		window.addEventListener("resize", updateSize);
 		return () => window.removeEventListener("resize", updateSize);
 	}, []);
+
+	const [showModal, setShowModal] = useState(false)
+	const handleShowModal = useCallback(() => {
+		setShowModal(true)
+	}, [])
+
+	const handleHideModal = useCallback(() => {
+		setShowModal(false)
+	}, [])
 	return (
+		<>
 		<div className="container" style={{ width: widthScreen }}>
 			<div className="introduce" style={{ height: heightScreen, width: widthScreen }}>
 				<div className="introduce-text">
@@ -60,7 +71,7 @@ function Home() {
 					</div>
 				</div>
 			</div>
-			<a href="/create_page" className="create-page" style={{ top: heightScreen - 56 }}>
+			<a onClick={handleShowModal} className="create-page" style={{ top: heightScreen - 56 }}>
 				<span className="create-text">CREATE PAGE</span>
 			</a>
 			<List
@@ -75,6 +86,8 @@ function Home() {
 				}}
 			/>
 		</div>
+		<ModalCreatePage isVisible={showModal} onclose={handleHideModal} />
+		</>
 	);
 }
 

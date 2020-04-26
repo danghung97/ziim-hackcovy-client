@@ -71,6 +71,7 @@ function ModalCreatePage({ isVisible, onclose }) {
 								}}
 								size="large"
 								htmlType="submit"
+								href="/create_page"
 							>
 								CREATE PAGE
 							</Button>
